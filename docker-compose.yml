@@ -1,0 +1,100 @@
+version: '3.9'
+services:
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run start
+    volumes:
+      - /opt/app/node_modules
+      - ./client:/opt/app/
+    ports:
+      - 3000:3000
+    environment:
+      - WATCHPACK_POLLING=true
+    stdin_open: true
+    tty: true
+    networks:
+      - blog
+
+  comments:
+    container_name: comments
+    build:
+      context: ./comments
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run start
+    volumes:
+      - /opt/app/node_modules
+      - ./comments:/opt/app/
+    ports:
+      - 5001:5001
+    networks:
+      - blog
+
+  event-bus:
+    container_name: event-bus
+    build:
+      context: ./event-bus
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run start
+    volumes:
+      - /opt/app/node_modules
+      - ./event-bus:/opt/app/
+    ports:
+      - 5005:5005
+    networks:
+      - blog
+
+  moderation:
+    container_name: moderation
+    build:
+      context: ./moderation
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run start
+    volumes:
+      - /opt/app/node_modules
+      - ./moderation:/opt/app/
+    ports:
+      - 5004:5004
+    networks:
+      - blog
+
+  posts:
+    container_name: posts
+    build:
+      context: ./posts
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run start
+    volumes:
+      - /opt/app/node_modules
+      - ./posts:/opt/app/
+    ports:
+      - 5002:5002
+    networks:
+      - blog
+
+  query:
+    container_name: query
+    build:
+      context: ./query
+      dockerfile: ./Dockerfile
+    restart: always
+    command: npm run start
+    volumes:
+      - /opt/app/node_modules
+      - ./query:/opt/app/
+    ports:
+      - 5003:5003
+    networks:
+      - blog
+
+
+networks:
+  blog:
+    driver: bridge

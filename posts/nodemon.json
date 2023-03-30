@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "ignore": ["**/*spec.ts", ".git", "node_modules/**/node_modules", "**/*spec.js", "**/*test.js", "**/*test.ts"],
+  "watch": ["./src", "./views", "./client", "./app", "./apps"],
+  "exc": "ts,js,ejs",
+  "execMap": {
+    "js": "node --nolazy -r --inspect=0.0.0.0:9229"
+  },
+  "exec": "node ./src/index.js"
+}
