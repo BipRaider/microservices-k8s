@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+const eventBusPath = 'http://event-bus-srv:5005';
+
 app.post('/events', async (req, res) => {
   const { type, data } = req.body;
 
@@ -19,7 +21,7 @@ app.post('/events', async (req, res) => {
       const status = comments[0].status === 'order' ? 'approved' : 'rejected';
 
       await axios
-        .post(`http://event-bus:5005/events`, {
+        .post(`${eventBusPath}/events`, {
           type: 'CommentModerated',
           data: { id, comments: [{ ...comments[0], status, updatedAt: new Date(Date.now()) }] },
         })

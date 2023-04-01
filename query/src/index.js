@@ -7,6 +7,7 @@ const axios = require('axios');
 const app = express();
 
 const postsDB = new Map();
+const eventBusPath = 'http://event-bus-srv:5005';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -69,7 +70,7 @@ app.post('/events', function (req, res) {
 
 app.listen(5003, async () => {
   console.log('Listening on 5003');
-  const { data } = await axios.get(`http://event-bus:5005/events`).catch(err => {
+  const { data } = await axios.get(`${eventBusPath}/events`).catch(err => {
     console.log('event-bus:', err.message);
   });
 

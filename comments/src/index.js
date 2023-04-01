@@ -10,6 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const commentsDB = new Map();
+const eventBusPath = 'http://event-bus-srv:5005';
 
 const requestTime = function (req, res, next) {
   req.requestTime = new Date(Date.now());
@@ -61,7 +62,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     }
 
     await axios
-      .post(`http://event-bus:5005/events`, {
+      .post(`${eventBusPath}/events`, {
         type: 'CommentCreate',
         data: { id, comments: [newComment] },
       })
@@ -103,7 +104,7 @@ app.post('/events', async (req, res) => {
       commentsDB.set(postId, { id: postId, comments: updatedComments });
 
       await axios
-        .post(`http://event-bus:5005/events`, { type: 'CommentUpdate', data: { id: postId, comments: [comment] } })
+        .post(`${eventBusPath}/events`, { type: 'CommentUpdate', data: { id: postId, comments: [comment] } })
         .catch(err => console.log('event-bus:', err.message));
 
       return;

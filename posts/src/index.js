@@ -10,6 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const postsDB = new Map();
+const eventBusPath = 'http://event-bus-srv:5005';
 
 const requestTime = function (req, res, next) {
   req.requestTime = new Date(Date.now());
@@ -52,7 +53,7 @@ app.post('/posts', async (req, res) => {
   const post = postsDB.get(id) || null;
 
   try {
-    await axios.post(`http://event-bus:5005/events`, {
+    await axios.post(`${eventBusPath}/events`, {
       type: 'PostCreate',
       data: post,
     });
