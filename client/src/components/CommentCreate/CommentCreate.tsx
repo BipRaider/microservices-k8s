@@ -9,7 +9,7 @@ export const CommentCreate: React.FC<CommentCreateProps> = ({ postId }) => {
   const handlerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await axios.post(`http://localhost:5001/posts/${postId}/comments`, {
+    await axios.post(`http://posts.com/posts/${postId}/comments`, {
       comment: {
         content,
       },

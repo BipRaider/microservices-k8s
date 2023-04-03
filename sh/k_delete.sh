@@ -13,8 +13,5 @@ kubectl delete deployment moderation-depl
 echo [Delete query]
 kubectl delete deployment query-depl
 
-echo [clear none images]:
-docker image prune
-
-echo [List all images]:
-docker images --filter=reference='bipus/*'
+echo [Delete client]
+kubectl delete deployment client-depl

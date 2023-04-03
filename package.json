@@ -5,17 +5,21 @@
   "main": "index.js",
   "scripts": {
     "up": "docker-compose up -d",
+    "k:up": "kubectl apply -f ./infra/k8s/",
     "k:check": "bash ./sh/k_check.sh",
     "k:apply": "bash ./sh/k_apply.sh",
     "k:restart": "bash ./sh/k_restart.sh",
-    "k:delete": "bash ./sh/k_delete.sh",
     "ks:posts": "kubectl apply -f ./infra/k8s/posts-srv.yaml",
+    "ks:ingrees": "kubectl apply -f ./infra/k8s/ingress-srv.yaml",
     "docker:build": "bash ./sh/docker_build.sh",
     "docker:posts": "bash ./sh/docker_posts.sh",
     "docker:event-bus": "bash ./sh/docker_event-bus.sh",
     "docker:query": "bash ./sh/docker_query.sh",
     "docker:comments": "bash ./sh/docker_comments.sh",
-    "docker:moderation": "bash ./sh/docker_moderation.sh"
+    "docker:moderation": "bash ./sh/docker_moderation.sh",
+    "docker:client": "bash ./sh/docker_client.sh",
+    "k:delete": "bash ./sh/k_delete.sh",
+    "docker:clear": "bash ./sh/docker_clear.sh"
   },
   "author": "BipRaider",
   "license": "ISC"

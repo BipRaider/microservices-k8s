@@ -40,7 +40,7 @@ app.get('/posts', function (req, res) {
   });
 });
 
-app.post('/posts', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
   const id = randomBytes(10).toString('hex');
 
   if (req.body) {
@@ -74,5 +74,6 @@ app.post('/events', function (req, res) {
 });
 
 app.listen(5002, () => {
+  console.log('posts start');
   console.log('Listening on 5002');
 });

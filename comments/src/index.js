@@ -118,5 +118,6 @@ app.post('/events', async (req, res) => {
 });
 
 app.listen(5001, () => {
+  console.dir('Posts');
   console.log('Listening on 5001');
 });

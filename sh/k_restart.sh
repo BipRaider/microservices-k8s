@@ -13,8 +13,5 @@ kubectl rollout restart deployment moderation-depl
 echo [Restart query]
 kubectl rollout restart deployment query-depl
 
-echo [clear none images]:
-docker image prune
-
-echo [List all images]:
-docker images --filter=reference='bipus/*'
+echo [Restart client]
+kubectl rollout restart deployment client-depl

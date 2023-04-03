@@ -10,7 +10,7 @@ export const PostsCreate: React.FC<PostsCreateProps> = () => {
   const handlerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await axios.post('http://localhost:5002/posts', {
+    await axios.post('http://posts.com/posts/create', {
       post: {
         title,
       },

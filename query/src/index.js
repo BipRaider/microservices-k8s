@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 /** The function for event handling. */
 const handleEvent = ({ type, data }) => {
+  console.dir(type);
   switch (type) {
     case 'PostCreate':
       postsDB.set(data?.id, { ...data, comments: [] });
@@ -69,6 +70,7 @@ app.post('/events', function (req, res) {
 });
 
 app.listen(5003, async () => {
+  console.log('event-bus start');
   console.log('Listening on 5003');
   const { data } = await axios.get(`${eventBusPath}/events`).catch(err => {
     console.log('event-bus:', err.message);

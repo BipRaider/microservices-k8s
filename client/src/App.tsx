@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './App.css';
 import { PostsCreate, PostsList } from './components';
 
 const App: React.FC = () => {

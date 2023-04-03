@@ -10,7 +10,7 @@ export const PostsList: React.FC<PostsListProps> = () => {
   const [posts, setPosts] = useState<Posts[]>([]);
 
   const fetchPosts = async () => {
-    const { data } = await axios.get<GetPosts>('http://localhost:5003/posts');
+    const { data } = await axios.get<GetPosts>('http://posts.com/posts');
 
     setPosts(data?.posts);
   };
